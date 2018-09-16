@@ -31,7 +31,7 @@ namespace better_assert_private_space
     #undef better_assert
 #endif
 
-#define better_assert(EXPRESSION, ... ) ((EXPRESSION) ? (void)0 : better_assert_private_space::print_assertion(std::cerr, "Assertion failure: ",  #EXPRESSION, " in File: ", __FILE__, " in Line: ",  __LINE__ __VA_OPT__(,) __VA_ARGS__))
+#define better_assert(EXPRESSION, ... ) ((EXPRESSION) ? (void)0 : better_assert_private_space::print_assertion(std::cerr, "Assertion failure: `",  #EXPRESSION, "` in File: `", __FILE__, "` in function: `", __func__, "` in Line: ",  __LINE__ __VA_OPT__(,) __VA_ARGS__))
 
 #endif
 
