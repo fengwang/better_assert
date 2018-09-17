@@ -9,21 +9,14 @@ static_assert( __cplusplus >= 201703L, "C++17 is a must for this library, please
 
 namespace better_assert_private_space
 {
-    #ifdef NDEBUG
-        constexpr std::uint_least64_t debug_mode = 0;
-    #else
-        constexpr std::uint_least64_t debug_mode = 1;
-    #endif
-
     template< typename... Args >
     void print_assertion(std::ostream& out, Args&&... args)
     {
+        #ifndef NDEBUG
         out.precision( 20 );
-        if constexpr( debug_mode )
-        {
-            (out << ... << args) << std::endl;
-            abort();
-        }
+        (out << ... << args) << std::endl;
+        abort();
+        #endif
     }
 }
 
